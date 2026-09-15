@@ -30,11 +30,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('start.jpg') center center/cover no-repeat;
+            background: url('start.jpg') center -5%/cover no-repeat;
             background-color: #f4a460;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             z-index: 1000;
             cursor: pointer;
         }
@@ -44,27 +41,34 @@
         }
 
         .start-overlay {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 30px 40px;
-            border-radius: 20px;
+            position: absolute;
+            bottom: 2%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px 30px;
+            border-radius: 15px;
             text-align: center;
-            max-width: 90%;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(3px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            white-space: nowrap;
+            min-width: 300px;
         }
 
         .start-overlay h1 {
             color: white;
-            font-size: 42px;
-            margin-bottom: 15px;
+            font-size: 36px;
+            margin-bottom: 5px;
             font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            letter-spacing: 1px;
         }
 
         .start-overlay p {
             color: white;
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 400;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
         }
 
         /* Финальный экран с видео */
@@ -214,28 +218,37 @@
             transform: scale(1.05);
         }
 
-        /* Адаптация для мобильных */
+        /* ПЛАНШЕТ */
+        @media (max-width: 1024px) {
+            .start-screen {
+                background: url('start.jpg') center -3%/cover no-repeat;
+            }
+            .start-overlay h1 {
+                font-size: 32px;
+            }
+        }
+
+        /* МОБИЛЬНЫЙ */
         @media (max-width: 768px) {
             .start-screen {
                 background: url('start.jpg') center top/contain no-repeat;
                 background-color: #f4a460;
-                align-items: flex-end;
-                padding-bottom: 80px;
             }
             
             .start-overlay {
-                background: rgba(0, 0, 0, 0.7);
-                padding: 25px 30px;
-                margin: 0 20px;
+                bottom: 1%;
+                padding: 12px 20px;
+                width: 90%;
+                min-width: auto;
+                white-space: normal;
             }
             
             .start-overlay h1 {
-                font-size: 32px;
-                margin-bottom: 10px;
+                font-size: 28px;
             }
             
             .start-overlay p {
-                font-size: 18px;
+                font-size: 14px;
             }
 
             .game-board {
@@ -261,12 +274,17 @@
         }
 
         @media (max-width: 480px) {
+            .start-overlay {
+                padding: 10px 15px;
+                bottom: 0.5%;
+            }
+            
             .start-overlay h1 {
-                font-size: 28px;
+                font-size: 24px;
             }
             
             .start-overlay p {
-                font-size: 16px;
+                font-size: 12px;
             }
 
             .card {
@@ -313,7 +331,6 @@
         let pairs = 0;
         let lockBoard = false;
 
-        // Обработчик стартового экрана
         document.getElementById('startScreen').addEventListener('click', function() {
             this.classList.add('hidden');
             initGame();
@@ -331,17 +348,14 @@
             document.getElementById('moves').textContent = moves;
             document.getElementById('pairs').textContent = pairs;
 
-            // Создаем массив с картинками (каждая картинка встречается дважды)
             let cards = [];
             for (let i = 1; i <= 10; i++) {
                 cards.push(`card${i}.jpg`);
                 cards.push(`card${i}.jpg`);
             }
 
-            // Перемешиваем массив
             cards = shuffleArray(cards);
 
-            // Создаем карточки
             cards.forEach((image, index) => {
                 const card = document.createElement('div');
                 card.className = 'card';
