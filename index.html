@@ -31,6 +31,7 @@
             width: 100%;
             height: 100%;
             background: url('start.jpg') center center/cover no-repeat;
+            background-color: #f4a460;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -43,23 +44,27 @@
         }
 
         .start-overlay {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 40px 60px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px 40px;
             border-radius: 20px;
             text-align: center;
+            max-width: 90%;
+            backdrop-filter: blur(5px);
         }
 
         .start-overlay h1 {
             color: white;
-            font-size: 48px;
-            margin-bottom: 20px;
+            font-size: 42px;
+            margin-bottom: 15px;
             font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .start-overlay p {
             color: white;
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 400;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
         /* Финальный экран с видео */
@@ -209,7 +214,30 @@
             transform: scale(1.05);
         }
 
+        /* Адаптация для мобильных */
         @media (max-width: 768px) {
+            .start-screen {
+                background: url('start.jpg') center top/contain no-repeat;
+                background-color: #f4a460;
+                align-items: flex-end;
+                padding-bottom: 80px;
+            }
+            
+            .start-overlay {
+                background: rgba(0, 0, 0, 0.7);
+                padding: 25px 30px;
+                margin: 0 20px;
+            }
+            
+            .start-overlay h1 {
+                font-size: 32px;
+                margin-bottom: 10px;
+            }
+            
+            .start-overlay p {
+                font-size: 18px;
+            }
+
             .game-board {
                 grid-template-columns: repeat(4, 1fr);
             }
@@ -219,12 +247,35 @@
                 height: 70px;
             }
 
-            .start-overlay h1 {
-                font-size: 36px;
+            .container {
+                padding: 20px;
             }
 
+            h1 {
+                font-size: 24px;
+            }
+
+            .stats {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .start-overlay h1 {
+                font-size: 28px;
+            }
+            
             .start-overlay p {
-                font-size: 18px;
+                font-size: 16px;
+            }
+
+            .card {
+                width: 60px;
+                height: 60px;
+            }
+
+            .game-board {
+                gap: 8px;
             }
         }
     </style>
